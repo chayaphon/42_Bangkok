@@ -5,11 +5,11 @@ Welcome to my GitHub repository for projects developed during my studies at 42 B
 
 ## Table of Contents
 - [Piscine C](#projects)
-- [Libft](#projects)
-- [ft_printf](#projects)
+- [Libft][https://github.com/chayaphon/42_Bangkok/tree/main/Libft]
+- [ft_printf][https://github.com/chayaphon/42_Bangkok/tree/main/ft_printf]
 - [Born2beRoot](#projects)
-- [get_next_line](#projects)
-- [Minitalk](#projects)
+- [get_next_line][https://github.com/chayaphon/42_Bangkok/tree/main/get_next_line]
+- [Minitalk][https://github.com/chayaphon/42_Bangkok/tree/main/minitalk]
 - [FDF](#projects)
 - [Push_swap](#projects)
 - [Contributing](#contributing)
