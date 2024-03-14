@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_base.c                                          :+:      :+:    :+:   */
+/*   ft_print_x.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 00:27:48 by csorntha          #+#    #+#             */
-/*   Updated: 2023/12/03 00:27:50 by csorntha         ###   ########.fr       */
+/*   Created: 2023/12/03 00:20:28 by csorntha          #+#    #+#             */
+/*   Updated: 2023/12/03 00:20:30 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-static	int	ft_strlen(const char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
+#include "../includes/libft.h"
 
 static	void	reverse(char *str, int length)
 {
@@ -62,23 +52,58 @@ int	ft_base(char *result, size_t n, const char *base)
 	return (ft_strlen(result));
 }
 
-/*
-#include <stdio.h>
-int main()
+int	ft_print_x(const unsigned int x, const char c)
 {
-    size_t number = 123456;
-    char *base = "0123456789abcdef";
-    char *converted = ft_base(number, base);
+	char	*str;
+	int		len;
 
-    if (converted != NULL)
-    {
-        printf("Converted number: %s\n", converted);
-        free(converted);
-    }
-    else
-    {
-        printf("Memory allocation failed.\n");
-    }
+	if (!x)
+	{
+		if (ft_print_c('0') == -1)
+			return (-1);
+		return (1);
+	}
+	str = malloc(sizeof(size_t) * CHAR_BIT + 1);
+	if (str == NULL)
+		return (-1);
+	if (c == 'X')
+		len = ft_base(str, x, "0123456789ABCDEF");
+	else
+		len = ft_base(str, x, "0123456789abcdef");
+	if (ft_print_s(str) == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	free(str);
+	return (len);
+}
 
-    return 0;
-}*/
+int	ft_print_p(const size_t p)
+{
+	char	*str;
+	int		len;
+
+	if (!p)
+	{
+		if (ft_print_s("0x0") == -1)
+			return (-1);
+		return (3);
+	}
+	str = malloc((sizeof(size_t) * CHAR_BIT) + 1);
+	if (str == NULL)
+		return (-1);
+	len = ft_base(str, p, "0123456789abcdef");
+	if (ft_print_s("0x") == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	if (ft_print_s(str) == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	free(str);
+	return (len + 2);
+}

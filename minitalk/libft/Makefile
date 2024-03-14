@@ -2,7 +2,7 @@ NAME = libft.a
 SOURCES = ft_atoi.c ft_print_cs.c ft_print_du.c ft_print_xp.c ft_printf.c ft_strlen.c
 PREFIXED_SOURCES = $(addprefix sources/,$(SOURCES))
 OBJECTS = $(PREFIXED_SOURCES:.c=.o)
-HEADER = includes/ft_printf.h
+HEADER = includes/libft.h
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes

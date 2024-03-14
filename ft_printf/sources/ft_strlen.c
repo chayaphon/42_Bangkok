@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 12:47:32 by csorntha          #+#    #+#             */
-/*   Updated: 2023/12/03 12:50:15 by csorntha         ###   ########.fr       */
+/*   Created: 2023/08/26 14:06:05 by csorntha          #+#    #+#             */
+/*   Updated: 2023/08/26 14:06:11 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int main (void)
+int	ft_strlen(const char *s)
 {
-	char *a;
+	int	i;
 
-	a = NULL;
-	printf("\t len:%d\n", ft_printf("Hello"));
-	printf("\t len:%d\n", printf("Hello"));
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

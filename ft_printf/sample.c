@@ -1,47 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 23:12:47 by csorntha          #+#    #+#             */
-/*   Updated: 2023/12/02 23:12:49 by csorntha         ###   ########.fr       */
+/*   Created: 2023/12/03 12:47:32 by csorntha          #+#    #+#             */
+/*   Updated: 2023/12/03 12:50:15 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_print_s(const char *s)
-{
-	int	len;
-
-	len = 0;
-	if (!s)
-	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		return (6);
-	}
-	while (s[len])
-	{
-		if (write (1, &s[len], 1) == -1)
-			return (-1);
-		len++;
-	}
-	return (len);
-}
-
-/*
 #include <stdio.h>
+#include "./includes/ft_printf.h"
+
 int	main(void)
 {
-	char *str;
+	char	*a;
 
-	//str = NULL;
-	str = "Hello BODY!";
-	printf("\tlen:%d", ft_print_s(str));
-	printf("\n");
-	printf("\tlen:%d", printf("%s", str));
-	printf("\n");
-}*/
+	a = NULL;
+	printf("\t len:%d\n", ft_printf("%c %s %d %u %x %p", 'A', "Hello", -521, -124, 15, a));
+	printf("\t len:%d\n", printf("%c %s %d %u %x %p", 'A', "Hello", -521, -124, 15, a));
+}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/libft.h"
 
 int	ft_print_d(const int d)
 {
@@ -41,16 +41,23 @@ int	ft_print_d(const int d)
 	return (len);
 }
 
-/*
-#include <stdio.h>
-int	main(void)
+int	ft_print_u(const unsigned int u)
 {
-	int a;
+	unsigned int	nbr;
+	int				len;
+	int				tmp;
 
-	a = -123456789;
-	printf("\tlen:%d", ft_print_d(a));
-	printf("\n");
-	printf("\tlen:%d", printf("%d", a));
-	printf("\n");
-	return (0);
-}*/
+	len = 0;
+	nbr = u;
+	if (nbr / 10 != 0)
+	{
+		tmp = ft_print_u(nbr / 10);
+		if (tmp == -1)
+			return (-1);
+		len += tmp;
+	}
+	if (ft_print_c(nbr % 10 + '0') == -1)
+		return (-1);
+	len++;
+	return (len);
+}
