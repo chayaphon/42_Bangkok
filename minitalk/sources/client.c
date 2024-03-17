@@ -59,7 +59,7 @@ int	main(int argc, char	**argv)
 	char	*str;
 
 	if (argc != 3)
-		ft_printf("Please input server pid and message.");
+		ft_printf("Please input server pid and one message argument.\n");
 	else
 	{
 		pid = ft_atoi(argv[1]);
