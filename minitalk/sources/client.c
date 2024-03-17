@@ -35,7 +35,7 @@ void	sig_send_message(int pid, char *str, size_t len)
 	int		pos;
 
 	i = 0;
-	while (i <= len)
+	while (i < len)
 	{
 		pos = 7;
 		while (pos >= 0)
