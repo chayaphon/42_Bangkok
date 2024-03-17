@@ -17,7 +17,7 @@ void	ft_swap_node(t_list **node)
 	t_list	*first;
 	t_list	*second;
 
-	if (ft_lstsize(node) <= 1)
+	if (ft_lstsize(*node) <= 1)
 		return ;
 	first = *node;
 	second = first->next;
@@ -37,4 +37,17 @@ void	ft_swap_both(t_list **node_a, t_list **node_b)
 	ft_swap_node(node_a);
 	ft_swap_node(node_b);
 	ft_printf("ss\n");
+}
+
+void	ft_push(t_list **node1, t_list **node2, char *str)
+{
+	t_list	*temp;
+
+	if (!*node1)
+		return ;
+	temp = *node1;
+	*node1 = temp->next;
+	temp->next = *node2;
+	*node2 = temp;
+	ft_printf("%s\n", str);
 }

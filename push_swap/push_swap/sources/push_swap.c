@@ -12,10 +12,165 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_push_swap(t_list **node_a, t_list **node_b)
+int ft_check_cost(t_list *node, int midpoint)
 {
-	int	i;
+	int up_cost;
+	int down_cost;
+	int cost;
+	int size;
+
+	size = ft_lstsize(node);
+	cost = 0;
+	up_cost = 0;
+	down_cost = 0;
+	while (node)
+	{
+		if (*(int *)node->index < midpoint && up_cost == 0)
+			up_cost = cost;
+		if (*(int *)node->index < midpoint)
+			down_cost = cost;
+		node = node->next;
+		cost++;
+	}
+	down_cost = size - down_cost;
+	if (up_cost <= down_cost)
+		return (1);
+	return (0);
+}
+
+void ft_move_a(t_list **node_a, t_list **node_b, int num, int midpoint)
+{
+	while (num--)
+	{
+		if (*(int *)(*node_a)->index < midpoint)
+			ft_push(node_a, node_b, "pb");
+		else
+		{
+			if (ft_check_cost(*node_a, midpoint))
+				while (*(int *)(*node_a)->index >= midpoint)
+					ft_rotate_single(node_a, "ra");
+			else
+				while (*(int *)(*node_a)->index >= midpoint)
+					ft_rotate_reverse_single(node_a, "rra");
+			ft_push(node_a, node_b, "pb");
+		}
+	}
+}
+
+void ft_move_b(t_list **node_b, t_list **node_a, int num, int midpoint)
+{
+	int i;
 
 	i = 0;
-	ft_printf("%d", i);
+	while (num--)
+	{
+		while (*(int *)(*node_b)->index <= midpoint)
+		{
+			ft_rotate_single(node_b, "rb");
+			i++;
+		}
+		ft_push(node_b, node_a, "pa");
+	}
+	while (i--)
+		ft_rotate_reverse_single(node_b, "rrb");
+}
+
+int *ft_gerate_midpoint(t_list *node)
+{
+	int *mid_point_array;
+	int node_size;
+	int mid_point;
+	int i;
+
+	i = 0;
+	mid_point = 0;
+	node_size = ft_lstsize(node);
+	mid_point_array = (int *)malloc(sizeof(int) * node_size);
+	if (!mid_point_array)
+		return (NULL);
+	ft_memset(mid_point_array, 0, sizeof(int) * node_size);
+	while (mid_point < node_size - 1)
+	{
+		if ((node_size - mid_point) % 2 == 0)
+			mid_point = ((node_size - mid_point) / 2) + mid_point;
+		else
+			mid_point = (((node_size - mid_point) + 1) / 2) + mid_point;
+		mid_point_array[i++] = mid_point;
+	}
+	return (mid_point_array);
+}
+
+void ft_reverse_array(int *array)
+{
+	int i;
+	int j;
+	int	temp;
+
+	i = 0;
+	j = 0;
+	while (array[j++])
+	j -= 1;
+	while(array[i])
+	{
+		temp = array[i];
+		array[i++] = array[j];
+		array[j--] = temp;
+	}
+	ft_printf("Finish Reverse!\n");
+}
+
+void ft_push_swap(t_list **node_a, t_list **node_b, int argc, char **argv)
+{
+	int i;
+	int *mid_point_array;
+
+	if (!ft_parser(argc, &argv))
+		return;
+	if (!ft_initial_stack(node_a, argv))
+		ft_lstclear(node_a, ft_clear_content);
+	if (argc == 2)
+		free(argv);
+	mid_point_array = ft_gerate_midpoint(*node_a);
+	ft_operation(node_a, node_b, mid_point_array);
+
+	i = 0;
+	ft_printf("Array : ");
+	while (mid_point_array[i])
+		ft_printf("%d ,",mid_point_array[i++]);
+	i = 0;
+	ft_reverse_array(mid_point_array);
+	ft_printf("\nArray : ");
+	while (mid_point_array[i])
+		ft_printf("%d ,",mid_point_array[i++]);
+	ft_printf("\n");
+
+	// while (!ft_is_all_sorted(*node_a))
+}
+
+void ft_operation(t_list **node_a, t_list **node_b, int *mid_point_array)
+{
+	int num;
+
+	num = 1;
+	while (*mid_point_array)
+	{
+		num = *mid_point_array - num;
+		ft_move_a(node_a, node_b, num, *mid_point_array);
+		num = *mid_point_array++;
+	}
+	if (!ft_is_top_sorted(*node_a))
+		ft_rotate_single(node_a, "ra");
+	ft_push(node_b, node_a, "pa");
+
+	// num = ft_lstsize(*node_b) + 2;
+	// while (mid_lst_last)
+	// {
+	// 	num = (*(int *)mid_lst_last->content - num) * -1;
+	// 	ft_printf("num : %d\n", num);
+	// 	// ft_printf("midpoint : %d\n", *(int *)mid_lst_last->content );
+	// 	ft_printf("midpoint : %d\n", *(int *)mid_lst_last->content - 2);
+	// 	// ft_move_b(node_a, node_b, num, *(int *)mid_lst_last->content - 2);
+	// 	num = *(int *)mid_lst_last->content;
+	// 	mid_lst_last = mid_lst_last->prev;
+	// }
 }

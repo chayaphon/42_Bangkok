@@ -12,6 +12,11 @@
 
 #include "../includes/push_swap.h"
 
+void	ft_clear_content(void *content)
+{
+	free (content);
+}
+
 int	ft_index_sorting(t_list *node, int node_len)
 {
 	int		i;
@@ -20,10 +25,11 @@ int	ft_index_sorting(t_list *node, int node_len)
 	t_list	*min_node;
 
 	i = 0;
+	min_node = NULL;
 	while (++i <= node_len)
 	{
 		lst = node;
-		min = 2147483647;
+		min = INT_MAX;
 		while (lst)
 		{
 			if (*(int *)lst->index == 0 && *(int *)lst->content < min)
@@ -39,7 +45,7 @@ int	ft_index_sorting(t_list *node, int node_len)
 	return (1);
 }
 
-t_list	*ft_create_and_init_node(int index_val, char *content_val)
+t_list	*ft_create_node(int index_val, int content_val)
 {
 	int		*index;
 	int		*content;
@@ -54,7 +60,7 @@ t_list	*ft_create_and_init_node(int index_val, char *content_val)
 		return (0);
 	}
 	*index = index_val;
-	*content = ft_atoi(content_val);
+	*content = content_val;
 	new_lst = ft_lstnew(index, content);
 	if (!new_lst)
 	{
@@ -73,7 +79,7 @@ int	ft_initial_stack(t_list **node, char **val)
 	i = -1;
 	while (val[++i])
 	{
-		new_lst = ft_create_and_init_node(0, val[i]);
+		new_lst = ft_create_node(0, ft_atoi(val[i]));
 		if (!new_lst)
 			return (0);
 		ft_lstadd_back(node, new_lst);
@@ -83,15 +89,32 @@ int	ft_initial_stack(t_list **node, char **val)
 	return (1);
 }
 
-void	ft_print_node(t_list *node)
+int	ft_is_all_sorted(t_list *stack)
 {
-	t_list	*temp;
+	int	prev_index;
+	int i;
 
-	temp = node;
-	while (temp)
+	i = 0;
+	prev_index = 0;
+	while (stack)
 	{
-		ft_printf("Index: %d ", *(int *)(temp->index));
-		ft_printf("Content: %d\n", *(int *)(temp->content));
-		temp = temp->next;
+		if (*(int *)stack->index < prev_index)
+			return (0);
+		prev_index = *(int *)stack->index;
+		stack = stack->next;
 	}
+	return (1);
+}
+
+int	ft_is_top_sorted(t_list *stack)
+{
+	int	top_index;
+	int i;
+
+	i = 1;
+	top_index = *(int *)stack->index;
+	stack = stack->next;
+	if (*(int *)stack->index < top_index)
+		return (0);
+	return (1);
 }
