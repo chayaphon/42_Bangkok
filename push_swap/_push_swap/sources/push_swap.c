@@ -107,16 +107,16 @@ void	ft_push_swap(t_list **node_a, t_list **node_b, int argc, char **argv)
 		ft_lstclear(node_a, ft_clear_content);
 	if (argc == 2)
 		free(argv);
-	mid_point_array = ft_gerate_midpoint(*node_a);
 	if (!ft_is_all_sorted(*node_a))
 	{
 		if (ft_lstsize(*node_a) <= 3)
 			ft_sort_three(node_a);
 		else
 		{
+			mid_point_array = ft_gerate_midpoint(*node_a);
 			ft_move_a(node_a, node_b, mid_point_array);
+			free(mid_point_array);
 			ft_move_b(node_a, node_b);
 		}
 	}
-	free(mid_point_array);
 }

@@ -27,7 +27,7 @@ int	ft_index_sorting(t_list *node, int node_len)
 		min = INT_MAX;
 		while (lst)
 		{
-			if (*(int *)lst->index == 0 && *(int *)lst->content < min)
+			if (*(int *)lst->index == 0 && *(int *)lst->content <= min)
 			{
 				min = *(int *)lst->content;
 				min_node = lst;
