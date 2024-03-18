@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_general.c                                :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,11 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_clear_content(void *content)
-{
-	free (content);
-}
 
 int	ft_index_sorting(t_list *node, int node_len)
 {
@@ -45,56 +40,10 @@ int	ft_index_sorting(t_list *node, int node_len)
 	return (1);
 }
 
-t_list	*ft_create_node(int index_val, int content_val)
-{
-	int		*index;
-	int		*content;
-	t_list	*new_lst;
-
-	index = malloc(sizeof(int));
-	content = malloc(sizeof(int));
-	if (!index || !content)
-	{
-		free(index);
-		free(content);
-		return (0);
-	}
-	*index = index_val;
-	*content = content_val;
-	new_lst = ft_lstnew(index, content);
-	if (!new_lst)
-	{
-		free(index);
-		free(content);
-		return (0);
-	}
-	return (new_lst);
-}
-
-int	ft_initial_stack(t_list **node, char **val)
-{
-	t_list	*new_lst;
-	int		i;
-
-	i = -1;
-	while (val[++i])
-	{
-		new_lst = ft_create_node(0, ft_atoi(val[i]));
-		if (!new_lst)
-			return (0);
-		ft_lstadd_back(node, new_lst);
-	}
-	if (!ft_index_sorting(*node, ft_lstsize(*node)))
-		return (0);
-	return (1);
-}
-
 int	ft_is_all_sorted(t_list *stack)
 {
 	int	prev_index;
-	int i;
 
-	i = 0;
 	prev_index = 0;
 	while (stack)
 	{
@@ -109,12 +58,23 @@ int	ft_is_all_sorted(t_list *stack)
 int	ft_is_top_sorted(t_list *stack)
 {
 	int	top_index;
-	int i;
 
-	i = 1;
 	top_index = *(int *)stack->index;
 	stack = stack->next;
 	if (*(int *)stack->index < top_index)
 		return (0);
 	return (1);
+}
+
+int	ft_top_gap(t_list *stack)
+{
+	int	top_index;
+	int	gap;
+
+	top_index = *(int *)stack->index;
+	stack = stack->next;
+	gap = top_index - *(int *)stack->index;
+	if (gap < 0)
+		gap *= -1;
+	return (gap);
 }

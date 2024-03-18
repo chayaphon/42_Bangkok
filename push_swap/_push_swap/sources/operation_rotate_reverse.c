@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_swap.c                                   :+:      :+:    :+:   */
+/*   operation_rotate_reverse.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,42 +12,31 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_swap_node(t_list **node)
+void	ft_rotate_reverse_node(t_list **node)
 {
-	t_list	*first;
-	t_list	*second;
+	t_list	*last;
+	t_list	*new_last;
 
 	if (ft_lstsize(*node) <= 1)
 		return ;
-	first = *node;
-	second = first->next;
-	first->next = second->next;
-	second->next = first;
-	*node = second;
+	last = ft_lstlast(*node);
+	new_last = last->prev;
+	new_last->next = NULL;
+	last->next = *node;
+	last->prev = NULL;
+	(*node)->prev = last;
+	*node = last;
 }
 
-void	ft_swap_single(t_list **node, char *str)
+void	ft_rotate_reverse_single(t_list **node, char *str)
 {
-	ft_swap_node(node);
+	ft_rotate_reverse_node(node);
 	ft_printf("%s\n", str);
 }
 
-void	ft_swap_both(t_list **node_a, t_list **node_b)
+void	ft_rotate_reverse_both(t_list **node_a, t_list **node_b)
 {
-	ft_swap_node(node_a);
-	ft_swap_node(node_b);
-	ft_printf("ss\n");
-}
-
-void	ft_push(t_list **node1, t_list **node2, char *str)
-{
-	t_list	*temp;
-
-	if (!*node1)
-		return ;
-	temp = *node1;
-	*node1 = temp->next;
-	temp->next = *node2;
-	*node2 = temp;
-	ft_printf("%s\n", str);
+	ft_rotate_reverse_node(node_a);
+	ft_rotate_reverse_node(node_b);
+	ft_printf("rr\n");
 }
