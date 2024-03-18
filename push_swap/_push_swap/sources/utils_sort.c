@@ -78,3 +78,14 @@ int	ft_top_gap(t_list *stack)
 		gap *= -1;
 	return (gap);
 }
+
+void	ft_sort_three(t_list **stack)
+{
+	if (!ft_is_all_sorted(*stack))
+	{
+		if (!ft_is_top_sorted(*stack))
+			ft_swap_single(stack, "sa");
+		else
+			ft_rotate_reverse_single(stack, "rra");
+	}
+}

@@ -76,7 +76,7 @@ int	ft_parser(int argc, char ***argv)
 		(*argv)++;
 	if (!validate_input(*argv))
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	return (1);

@@ -24,13 +24,14 @@ void	ft_rotate_both(t_list **node_a, t_list **node_b);
 void	ft_rotate_reverse_single(t_list **node, char *str);
 void	ft_rotate_reverse_both(t_list **node_a, t_list **node_b);
 void	ft_clear_content(void *content);
+void	ft_sort_three(t_list **stack);
 int		ft_parser(int argc, char ***argv);
 int		ft_initial_stack(t_list **node, char **val);
 int		ft_index_sorting(t_list *node, int node_len);
 int		*ft_gerate_midpoint(t_list *node);
 int		ft_is_sorted(t_list *stack);
 int		ft_is_top_sorted(t_list *stack);
-int     ft_is_all_sorted(t_list *stack);
+int		ft_is_all_sorted(t_list *stack);
 int		ft_top_gap(t_list *stack);
 
 #endif

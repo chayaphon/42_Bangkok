@@ -51,7 +51,6 @@ void	ft_print_node_reverse(t_list *node)
 		temp = temp->prev;
 	}
 }
-
 // ft_printf("Stack A\n");
 // ft_print_node(stack_a);
 // ft_printf("Stack B\n");
