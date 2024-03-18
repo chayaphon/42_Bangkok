@@ -19,9 +19,15 @@ int	isnum_int(char *str)
 	char	*max_int;
 
 	max_int = "2147483647";
+	if (*str == ' ')
+		return (0);
 	if (*str == '-' || *str == '+')
+	{
 		if (*str++ == '-')
 			max_int = "2147483648";
+		if (*str == ' ' || *str == 0)
+			return (0);
+	}
 	i = -1;
 	len = ft_strlen(str);
 	if (len > 10)
@@ -55,6 +61,8 @@ int	validate_input(char **str)
 	int	i;
 
 	i = 0;
+	if (!*str)
+		return (0);
 	while (str[i])
 	{
 		if (!isnum_int(str[i]))
@@ -68,11 +76,11 @@ int	validate_input(char **str)
 
 int	ft_parser(int argc, char ***argv)
 {
-	if (argc == 1 || (argc == 2 && !(*argv)[1][0]))
+	if (argc == 1)
 		return (0);
-	else if (argc == 2)
+	if (argc == 2)
 		*argv = ft_split((*argv)[1], ' ');
-	else if (argc > 2)
+	if (argc > 2)
 		(*argv)++;
 	if (!validate_input(*argv))
 	{

@@ -81,7 +81,7 @@ int	ft_top_gap(t_list *stack)
 
 void	ft_sort_three(t_list **stack)
 {
-	if (!ft_is_all_sorted(*stack))
+	while (!ft_is_all_sorted(*stack))
 	{
 		if (!ft_is_top_sorted(*stack))
 			ft_swap_single(stack, "sa");
