@@ -106,7 +106,7 @@ void	ft_push_swap(t_list **node_a, t_list **node_b, int argc, char **argv)
 	if (!ft_initial_stack(node_a, argv))
 		ft_lstclear(node_a, ft_clear_content);
 	if (argc == 2)
-		free(argv);
+		ft_free_array(argv);
 	if (!ft_is_all_sorted(*node_a))
 	{
 		if (ft_lstsize(*node_a) <= 3)

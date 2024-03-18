@@ -25,6 +25,7 @@ void	ft_rotate_reverse_single(t_list **node, char *str);
 void	ft_rotate_reverse_both(t_list **node_a, t_list **node_b);
 void	ft_clear_content(void *content);
 void	ft_sort_three(t_list **stack);
+void	ft_free_array(char **str);
 int		ft_parser(int argc, char ***argv);
 int		ft_initial_stack(t_list **node, char **val);
 int		ft_index_sorting(t_list *node, int node_len);

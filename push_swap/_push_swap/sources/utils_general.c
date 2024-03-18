@@ -17,6 +17,19 @@ void	ft_clear_content(void *content)
 	free (content);
 }
 
+void	ft_free_array(char **str)
+{
+	int	i;
+
+	if (str != NULL)
+	{
+		i = 0;
+		while (str[i] != NULL)
+			free(str[i++]);
+		free(str);
+	}
+}
+
 t_list	*ft_create_node(int index_val, int content_val)
 {
 	int		*index;

@@ -12,6 +12,20 @@
 
 #include "../includes/push_swap.h"
 
+int	main(int argc, char **argv)
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	ft_push_swap(&stack_a, &stack_b, argc, argv);
+	ft_lstclear(&stack_a, ft_clear_content);
+	ft_lstclear(&stack_b, ft_clear_content);
+	return (0);
+}
+
+/*
 void	ft_print_node(t_list *node)
 {
 	t_list	*temp;
@@ -37,26 +51,6 @@ void	ft_print_node_reverse(t_list *node)
 		temp = temp->prev;
 	}
 }
-
-int	main(int argc, char **argv)
-{
-	t_list	*stack_a;
-	t_list	*stack_b;
-
-	stack_a = NULL;
-	stack_b = NULL;
-	ft_push_swap(&stack_a, &stack_b, argc, argv);
-	ft_printf("Stack A\n");
-	ft_print_node(stack_a);
-	ft_printf("Stack B\n");
-	ft_print_node(stack_b);
-	ft_lstclear(&stack_a, ft_clear_content);
-	ft_lstclear(&stack_b, ft_clear_content);
-	return (0);
-}
-
-/*
-
 // ft_printf("Stack A\n");
 // ft_print_node(stack_a);
 // ft_printf("Stack B\n");
