@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_index_sorting(t_list *node, int node_len)
 {
@@ -55,15 +55,44 @@ int	ft_is_all_sorted(t_list *stack)
 	return (1);
 }
 
-int	ft_is_top_sorted(t_list *stack)
+int	ft_is_top_sorted(t_list *stack, int mode)
 {
 	int	top_index;
+	int	second_index;
 
+	if (!stack)
+		return (1);
+	if (!stack->next)
+		return (1);
 	top_index = *(int *)stack->index;
 	stack = stack->next;
-	if (*(int *)stack->index < top_index)
-		return (0);
-	return (1);
+	second_index = *(int *)stack->index;
+	if (second_index > top_index && mode == 0)
+		return (1);
+	if (*(int *)stack->index < top_index && mode == 1)
+		return (1);
+	return (0);
+}
+
+void	ft_top_correction(t_list **node_a, t_list **node_b, int mode)
+{
+	if (!ft_is_top_sorted(*node_a, 0))
+	{
+		if (!ft_is_top_sorted(*node_b, 1))
+			ft_swap_both(node_a, node_b, "ss");
+		else
+			ft_swap_single(node_a, "sa");
+	}
+	if (mode != 0)
+	{
+		if (!ft_is_top_sorted(*node_b, 1))
+		{
+			if (!ft_is_top_sorted(*node_a, 0))
+				ft_swap_both(node_a, node_b, "ss");
+			else
+				ft_swap_single(node_b, "sb");
+		}
+	}
 }
 
 int	ft_top_gap(t_list *stack)
@@ -77,15 +106,4 @@ int	ft_top_gap(t_list *stack)
 	if (gap < 0)
 		gap *= -1;
 	return (gap);
-}
-
-void	ft_sort_three(t_list **stack)
-{
-	while (!ft_is_all_sorted(*stack))
-	{
-		if (!ft_is_top_sorted(*stack))
-			ft_swap_single(stack, "sa");
-		else
-			ft_rotate_reverse_single(stack, "rra");
-	}
 }

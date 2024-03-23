@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
+
+void	ft_clear_content(void *content)
+{
+	free (content);
+}
 
 int	main(int argc, char **argv)
 {
@@ -24,35 +29,3 @@ int	main(int argc, char **argv)
 	ft_lstclear(&stack_b, ft_clear_content);
 	return (0);
 }
-
-/*
-void	ft_print_node(t_list *node)
-{
-	t_list	*temp;
-
-	temp = node;
-	while (temp)
-	{
-		ft_printf("Index: %d ", *(int *)(temp->index));
-		ft_printf("Content: %d\n", *(int *)(temp->content));
-		temp = temp->next;
-	}
-}
-
-void	ft_print_node_reverse(t_list *node)
-{
-	t_list	*temp;
-
-	temp = ft_lstlast(node);
-	while (temp)
-	{
-		ft_printf("Index: %d ", *(int *)(temp->index));
-		ft_printf("Content: %d\n", *(int *)(temp->content));
-		temp = temp->prev;
-	}
-}
-// ft_printf("Stack A\n");
-// ft_print_node(stack_a);
-// ft_printf("Stack B\n");
-// ft_print_node(stack_b);
-*/

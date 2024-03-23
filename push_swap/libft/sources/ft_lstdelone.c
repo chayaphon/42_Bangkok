@@ -18,5 +18,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 		return ;
 	del(lst->index);
 	del(lst->content);
+	del(lst->chunk);
 	free(lst);
 }

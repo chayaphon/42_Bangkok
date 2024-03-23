@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 14:06:34 by csorntha          #+#    #+#             */
-/*   Updated: 2023/08/26 14:06:38 by csorntha         ###   ########.fr       */
+/*   Created: 2024/03/14 22:39:38 by csorntha          #+#    #+#             */
+/*   Updated: 2024/03/14 22:39:46 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t	i;
+# include "../libft/includes/libft.h"
+# include "push_swap.h"
 
-	i = 0;
-	while (len--)
-		((char *)b)[i++] = c;
-	return (b);
-}
+void	get_input(t_list **stack_a, t_list **stack_b);
+
+#endif
