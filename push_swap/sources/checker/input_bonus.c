@@ -12,7 +12,7 @@
 
 #include "../../includes/checker_bonus.h"
 
-void	operate_input(char *input, t_list **stack_a, t_list **stack_b)
+int	operate_input(char *input, t_list **stack_a, t_list **stack_b)
 {
 	if (!ft_strncmp(input, "sa\n", 3))
 		ft_swap_single(stack_a, "");
@@ -37,7 +37,8 @@ void	operate_input(char *input, t_list **stack_a, t_list **stack_b)
 	else if (!ft_strncmp(input, "rrr\n", 4))
 		ft_rotate_reverse_both(stack_a, stack_b, "");
 	else
-		write(2, "Error\n", 6);
+		return (0);
+	return (1);
 }
 
 void	get_input(t_list **stack_a, t_list **stack_b)
@@ -48,7 +49,13 @@ void	get_input(t_list **stack_a, t_list **stack_b)
 	while (read(0, buffer, 4))
 	{
 		if (ft_strrchr(buffer, '\n'))
-			operate_input(buffer, stack_a, stack_b);
+		{
+			if (!operate_input(buffer, stack_a, stack_b))
+			{
+				write(2, "Error\n", 6);
+				return ;
+			}
+		}
 		ft_memset(buffer, '\0', 4);
 	}
 	if (ft_is_all_sorted(*stack_a) && !(*stack_b))
