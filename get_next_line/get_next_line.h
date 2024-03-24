@@ -28,7 +28,7 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, t_list **list);
-char	*get_data(t_list *list, t_list **p_list);
+char	*get_data(t_list *list);
 void	add_list(t_list **list, char *data);
 void	clean_list(t_list **list);
 void	clear_list(t_list **list);

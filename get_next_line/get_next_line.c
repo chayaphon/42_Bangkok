@@ -28,7 +28,7 @@ void	clean_list(t_list **list)
 		add_list(list, data);
 }
 
-char	*get_data(t_list *list, t_list **p_list)
+char	*get_data(t_list *list)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ char	*get_data(t_list *list, t_list **p_list)
 	data = malloc(get_len(list) + 1);
 	if (!data)
 	{
-		clear_list(p_list);
+		clear_list(&list);
 		return (NULL);
 	}
 	while (list)
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 		add_list(&list, data);
 	}
 	if (list)
-		data = get_data(list, &list);
+		data = get_data(list);
 	clean_list(&list);
 	return (data);
 }

@@ -17,7 +17,7 @@
 # include "push_swap.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 4
 # endif
 
 typedef struct s_lstbuff
@@ -29,7 +29,7 @@ typedef struct s_lstbuff
 void	get_input(t_list **stack_a, t_list **stack_b);
 char	*get_next_line(int fd);
 char	*read_line(int fd, t_buff **list);
-char	*get_data(t_buff *list, t_buff **p_list);
+char	*get_data(t_buff *list);
 void	add_list(t_buff **list, char *data);
 void	clean_list(t_buff **list);
 void	clear_list(t_buff **list);

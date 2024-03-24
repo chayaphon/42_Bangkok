@@ -48,18 +48,22 @@ void	get_input(t_list **stack_a, t_list **stack_b)
 {
 	char	*buffer;
 
-	buffer = get_next_line(0);
-	while (buffer)
+	while (1)
 	{
+		buffer = get_next_line(0);
+		if (!buffer)
+			break ;
 		if (!operate_input(buffer, stack_a, stack_b))
 		{
 			write(2, "Error\n", 6);
+			free(buffer);
 			return ;
 		}
-		buffer = get_next_line(0);
+		free(buffer);
 	}
 	if (ft_is_all_sorted(*stack_a) && !(*stack_b))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free(buffer);
 }
