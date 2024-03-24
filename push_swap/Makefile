@@ -1,6 +1,6 @@
 NAME = push_swap
-SRCS = main.c
-SRCS_COM = push_swap.c operation_parse.c operation_rotate_reverse.c operation_rotate.c operation_swap.c utils_general.c utils_sort.c utils_chunk.c 
+SRCS = main.c push_swap.c utils_chunk.c 
+SRCS_COM = operation_parse.c operation_rotate_reverse.c operation_rotate.c operation_swap.c utils_general.c utils_sort.c
 PRE_SRCS = $(addprefix sources/push_swap/,$(SRCS))
 PRE_SRCS_COM = $(addprefix sources/push_swap/,$(SRCS_COM))
 OBJ = $(PRE_SRCS:.c=.o)
