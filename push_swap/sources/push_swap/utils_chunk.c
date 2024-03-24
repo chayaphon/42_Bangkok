@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 int	ft_num_exist(t_list *node, int midpoint, int chunk, int mode)
 {

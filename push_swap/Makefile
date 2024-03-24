@@ -5,14 +5,14 @@ OBJ = $(PRE_SRCS:.c=.o)
 HEADER = includes/push_swap.h
 
 NAME_BONUS = checker
-SRCS_BONUS = main_bonus.c input_bonus.c
+SRCS_BONUS = main_bonus.c input_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c
 SRCS_BONUS_ORI = operation_parse.c operation_rotate_reverse.c operation_rotate.c operation_swap.c utils_general.c utils_sort.c
 PRE_SRCS_BONUS = $(addprefix sources/checker/,$(SRCS_BONUS))
 PRE_SRCS_BONUS_ORI = $(addprefix sources/push_swap/,$(SRCS_BONUS_ORI))
 
 OBJ_BONUS = $(PRE_SRCS_BONUS:.c=.o)
 OBJ_BONUS_ORI = $(PRE_SRCS_BONUS_ORI:.c=.o)
-HEADER_BONUS = includes/push_swap.h
+HEADER_BONUS = includes/checker_bonus.h
 
 LIB = libft/libft.a
 CC = cc

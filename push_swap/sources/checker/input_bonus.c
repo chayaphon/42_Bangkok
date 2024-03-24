@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/checker_bonus.h"
+#include "checker_bonus.h"
+
+#include <string.h>
+#include <stdio.h>
 
 int	operate_input(char *input, t_list **stack_a, t_list **stack_b)
 {
@@ -43,20 +46,17 @@ int	operate_input(char *input, t_list **stack_a, t_list **stack_b)
 
 void	get_input(t_list **stack_a, t_list **stack_b)
 {
-	char	buffer[5];
-
-	ft_memset(buffer, '\0', 4);
-	while (read(0, buffer, 4))
+	char	*buffer;
+	
+	buffer = get_next_line(0);
+	while (buffer)
 	{
-		if (ft_strrchr(buffer, '\n'))
+		if (!operate_input(buffer, stack_a, stack_b))
 		{
-			if (!operate_input(buffer, stack_a, stack_b))
-			{
-				write(2, "Error\n", 6);
-				return ;
-			}
+			write(2, "Error\n", 6);
+			return ;
 		}
-		ft_memset(buffer, '\0', 4);
+		buffer = get_next_line(0);
 	}
 	if (ft_is_all_sorted(*stack_a) && !(*stack_b))
 		ft_printf("OK\n");

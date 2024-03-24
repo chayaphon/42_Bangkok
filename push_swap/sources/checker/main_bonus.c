@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/checker_bonus.h"
+#include "checker_bonus.h"
 
 void	ft_clear_content(void *content)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 void	ft_move_a(t_list **node_a, t_list **node_b, int midpoint, int chunk)
 {

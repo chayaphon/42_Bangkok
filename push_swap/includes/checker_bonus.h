@@ -16,6 +16,26 @@
 # include "../libft/includes/libft.h"
 # include "push_swap.h"
 
-void	get_input(t_list **stack_a, t_list **stack_b);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
+typedef struct s_lstbuff
+{
+	char				*str_buf;
+	struct s_lstbuff	*next;
+}	t_buff;
+
+void    get_input(t_list **stack_a, t_list **stack_b);
+char	*get_next_line(int fd);
+char	*read_line(int fd, t_buff **list);
+char	*get_data(t_buff *list, t_buff **p_list);
+void	add_list(t_buff **list, char *data);
+void	clean_list(t_buff **list);
+void	clear_list(t_buff **list);
+int		is_break(t_buff *list);
+char	*read_remain_word(t_buff *list);
+int		get_len(t_buff *list);
+t_buff	*find_last_node(t_buff *list);
 
 #endif

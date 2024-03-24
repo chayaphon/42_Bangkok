@@ -38,20 +38,14 @@ int		ft_print_x(const unsigned int x, const char c);
 int		ft_base(char *result, size_t n, const char *base);
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *s);
-int		ft_lstsize(t_list *lst);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-
 t_list	*ft_lstnew(void *index, void *content, void *chunk);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif
