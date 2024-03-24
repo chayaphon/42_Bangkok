@@ -47,7 +47,7 @@ int	operate_input(char *input, t_list **stack_a, t_list **stack_b)
 void	get_input(t_list **stack_a, t_list **stack_b)
 {
 	char	*buffer;
-	
+
 	buffer = get_next_line(0);
 	while (buffer)
 	{
