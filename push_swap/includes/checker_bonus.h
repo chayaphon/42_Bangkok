@@ -28,10 +28,6 @@ typedef struct s_lstbuff
 
 void	get_input(t_list **stack_a, t_list **stack_b);
 char	*get_next_line(int fd);
-char	*read_line(int fd, t_buff **list);
-char	*get_data(t_buff *list);
-void	add_list(t_buff **list, char *data);
-void	clean_list(t_buff **list);
 void	clear_list(t_buff **list);
 int		is_break(t_buff *list);
 char	*read_remain_word(t_buff *list);

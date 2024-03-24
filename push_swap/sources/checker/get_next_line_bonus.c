@@ -12,6 +12,26 @@
 
 #include "checker_bonus.h"
 
+void	add_list(t_buff **list, char *data)
+{
+	t_buff	*new_node;
+	t_buff	*last_node;
+
+	new_node = malloc(sizeof(t_buff));
+	if (!new_node)
+	{
+		free(data);
+		return ;
+	}
+	new_node->str_buf = data;
+	new_node->next = NULL;
+	last_node = find_last_node(*list);
+	if (!last_node)
+		*list = new_node;
+	else
+		last_node->next = new_node;
+}
+
 void	clean_list(t_buff **list)
 {
 	char	*data;
@@ -56,37 +76,14 @@ char	*get_data(t_buff *list)
 	return (data);
 }
 
-void	add_list(t_buff **list, char *data)
-{
-	t_buff	*new_node;
-	t_buff	*last_node;
-
-	new_node = malloc(sizeof(t_buff));
-	if (!new_node)
-	{
-		free(data);
-		return ;
-	}
-	new_node->str_buf = data;
-	new_node->next = NULL;
-	last_node = find_last_node(*list);
-	if (!last_node)
-		*list = new_node;
-	else
-		last_node->next = new_node;
-}
-
-char	*read_line(int fd, t_buff **list)
+char	*read_line(int fd)
 {
 	int		char_read;	
 	char	*buffer;
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-	{
-		clear_list(list);
 		return (NULL);
-	}
 	char_read = read(fd, buffer, BUFFER_SIZE);
 	if (char_read == 0)
 	{
@@ -100,7 +97,6 @@ char	*read_line(int fd, t_buff **list)
 char	*get_next_line(int fd)
 {
 	static t_buff	*list;
-	t_buff			*last_node;
 	char			*data;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
@@ -110,11 +106,9 @@ char	*get_next_line(int fd)
 	}
 	while (1)
 	{
-		last_node = find_last_node(list);
-		if (last_node)
-			if (is_break(last_node) == 1)
-				break ;
-		data = read_line(fd, &list);
+		if (is_break(find_last_node(list)) == 1)
+			break ;
+		data = read_line(fd);
 		if (!data)
 			break ;
 		add_list(&list, data);

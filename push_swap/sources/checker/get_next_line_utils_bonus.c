@@ -46,10 +46,13 @@ int	is_break(t_buff *list)
 	int	i;
 
 	i = 0;
-	while (list->str_buf[i++])
+	if (list)
 	{
-		if (list->str_buf[i - 1] == '\n')
-			return (1);
+		while (list->str_buf[i++])
+		{
+			if (list->str_buf[i - 1] == '\n')
+				return (1);
+		}
 	}
 	return (0);
 }
