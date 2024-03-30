@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 22:40:29 by csorntha          #+#    #+#             */
-/*   Updated: 2024/03/26 21:50:05 by csorntha         ###   ########.fr       */
+/*   Created: 2023/09/08 10:30:25 by csorntha          #+#    #+#             */
+/*   Updated: 2023/09/08 10:31:19 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include "libft.h"
 
-int main(void)
+int	ft_lstsize(t_list *lst)
 {
-	printf("hello");
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

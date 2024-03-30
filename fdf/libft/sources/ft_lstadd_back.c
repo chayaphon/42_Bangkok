@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csorntha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 22:40:29 by csorntha          #+#    #+#             */
-/*   Updated: 2024/03/26 21:50:05 by csorntha         ###   ########.fr       */
+/*   Created: 2023/09/08 10:33:04 by csorntha          #+#    #+#             */
+/*   Updated: 2023/09/08 10:33:50 by csorntha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include "libft.h"
 
-int main(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	printf("hello");
+	t_list	*temp;
+
+	if (*lst)
+	{
+		temp = ft_lstlast(*lst);
+		temp->next = new;
+		new->prev = temp;
+	}
+	else
+		*lst = new;
 }
